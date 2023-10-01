@@ -1,19 +1,25 @@
-# !/usr/bin/python3
+#!/usr/bin/python3
+'''Module to find Pascal's Triangle integers'''
 
 def pascal_triangle(n):
+    pascal_triangle = list()
+
     if n <= 0:
-        return []
+        return pascal_triangle
+    
+    if n > 0:
+        pascal_triangle.append([1])
 
-    triangle = [[1]]
+    if n > 1:
+        pascal_triangle.append([1, 1])
 
-    for i in range(1, n):
-        prev_row = triangle[i - 1]
-        curr_row = [1]
+    for x in range(3, n+1):
+        pascal_triangle.append([0] * x)
+        pascal_triangle[x-1][0] = 1
+        pascal_triangle[x-1][x-1] = 1
 
-        for j in range(1, i):
-            curr_row.append(prev_row[j - 1] + prev_row[j])
-
-        curr_row.append(1)
-        triangle.append(curr_row)
-
-    return triangle
+        for y in range(1, x-1):
+            pascal_triangle[x-1][0] = \
+                pascal_triangle[x-2][y-1] + pascal_triangle[x-2][y]
+            
+    return pascal_triangle
