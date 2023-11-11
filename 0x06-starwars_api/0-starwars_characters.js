@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 function getMovieCharacters(movieId) {
-  const url = `https://swapi.dev/api/films/${movieId}/`;
+  const url = `https://swapi-api.alx-tools.com/api/films${movieId}/`;
 
   axios.get(url)
     .then(response => {
